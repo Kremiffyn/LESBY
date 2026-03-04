@@ -29,7 +29,17 @@ function AppContent() {
   const insets = useSafeAreaInsets();
 
   return (
-    <View style={[styles.Page, { paddingTop: insets.top }]}>
+    <View
+      style={[
+        styles.Page,
+        {
+          paddingTop: insets.top,
+          paddingBottom: insets.bottom,
+          paddingRight: insets.right,
+          paddingLeft: insets.left,
+        },
+      ]}
+    >
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <Bingo />
       <View style={styles.AuthorView}>

@@ -133,8 +133,8 @@ const gridStyle = StyleSheet.create({
     marginTop: 150,
   },
   fieldBox: {
-    width: 80,
-    height: 80,
+    width: 70,
+    height: 70,
     borderRightWidth: 1,
     borderBottomWidth: 1,
     justifyContent: 'center',
@@ -144,7 +144,7 @@ const gridStyle = StyleSheet.create({
     fontFamily: 'FunnelSans-Regular',
     padding: 1,
     textAlign: 'center',
-    fontSize: 12,
+    fontSize: 10,
   },
   topRow: {
     borderTopWidth: 1,
@@ -168,8 +168,8 @@ const gridStyle = StyleSheet.create({
   },
   checked: {
     position: 'absolute',
-    width: 80,
-    height: 80,
+    width: 70,
+    height: 70,
   },
   winBox: {
     position: 'absolute',
