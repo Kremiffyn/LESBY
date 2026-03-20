@@ -1,53 +1,38 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import React from "react";
+import { StatusBar, StyleSheet, useColorScheme, View, Text } from "react-native";
+import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import {
-  StatusBar,
-  StyleSheet,
-  useColorScheme,
-  View,
-  Text,
-} from 'react-native';
-import {
-  SafeAreaProvider,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
-import Bingo from './src/components/BingoGrid';
-import Sezony from './src/json/Motywy.json';
+import HomeScreen from "./src/components/HomeScreen";
+import LoginScreen from "./src/components/LoginScreen";
+import RegisterScreen from "./src/components/RegisterScreen";
+import Bingo from "./src/components/BingoGrid";
+import RankingScreen from "./src/components/RankingScreen";
+import Sezony from "./src/json/Motywy.json";
 
-function App() {
-  return (
-    <SafeAreaProvider>
-      <AppContent />
-    </SafeAreaProvider>
-  );
+export type RootStackParamList = {
+  Home: undefined;
+  Login: undefined;
+  Register: undefined;
+  Bingo: { Id_uzyt: number };
+  Ranking: undefined;
+};
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
+
+function getSeasonBackground(): string {
+  const month = new Date().getMonth();
+  if (month === 0 || month === 1 || month === 11) return Sezony.Zima[0].Tlo;
+  if (month >= 2 && month <= 4) return Sezony.Wiosna[0].Tlo;
+  if (month >= 5 && month <= 7) return Sezony.Lato[0].Tlo;
+  return Sezony.Jesien[0].Tlo;
 }
 
 function AppContent() {
-  const isDarkMode = useColorScheme() === 'dark';
+  const isDarkMode = useColorScheme() === "dark";
   const insets = useSafeAreaInsets();
-
-  const date = new Date();
-
-  let Bg;
-
-  if (
-    date.getMonth() === 0 ||
-    date.getMonth() === 1 ||
-    date.getMonth() === 11
-  ) {
-    Bg = Sezony.Zima[0].Tlo;
-  } else if (date.getMonth() >= 2 && date.getMonth() <= 4) {
-    Bg = Sezony.Wiosna[0].Tlo;
-  } else if (date.getMonth() >= 5 && date.getMonth() <= 7) {
-    Bg = Sezony.Lato[0].Tlo;
-  } else if (date.getMonth() >= 8 && date.getMonth() <= 10) {
-    Bg = Sezony.Jesien[0].Tlo;
-  }
+  const Bg = getSeasonBackground();
 
   const styles = StyleSheet.create({
     Page: {
@@ -57,11 +42,12 @@ function AppContent() {
     Author: {
       marginLeft: 5,
       marginBottom: 10,
-      fontFamily: 'FunnelSans-Regular',
+      fontFamily: "FunnelSans-Regular",
     },
     AuthorView: {
-      flex: 1,
-      justifyContent: 'flex-end',
+      alignItems: "flex-start",
+      justifyContent: "flex-end",
+      padding: 5,
     },
   });
 
@@ -77,8 +63,15 @@ function AppContent() {
         },
       ]}
     >
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <Bingo />
+      <StatusBar barStyle={isDarkMode ? "light-content" : "dark-content"} />
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Register" component={RegisterScreen} />
+        <Stack.Screen name="Bingo" component={Bingo} />
+        <Stack.Screen name="Ranking" component={RankingScreen} />
+      </Stack.Navigator>
+
       <View style={styles.AuthorView}>
         <Text style={styles.Author}>Kremiffyn</Text>
       </View>
@@ -86,4 +79,12 @@ function AppContent() {
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <AppContent />
+      </NavigationContainer>
+    </SafeAreaProvider>
+  );
+}
