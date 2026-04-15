@@ -1,0 +1,42 @@
+{
+  "Zima": [
+    {
+      "Tlo": "#c5e4ff",
+      "Obramowanie": "#00529a",
+      "ResetTlo": "#80c3ff",
+      "ResetObr": "#6dbbff",
+      "WygrywTlo": "#bcdeffe6",
+      "WygrywObr": "#9dc6ec"
+    }
+  ],
+  "Wiosna": [
+    {
+      "Tlo": "#d1ffc5",
+      "Obramowanie": "#3b9a00",
+      "ResetTlo": "#a4ff80",
+      "ResetObr": "#8fff6d",
+      "WygrywTlo": "#ddffbce6",
+      "WygrywObr": "#a5ec9d"
+    }
+  ],
+  "Lato": [
+    {
+      "Tlo": "#ffecc5",
+      "Obramowanie": "#9a5a00",
+      "ResetTlo": "#ffd780",
+      "ResetObr": "#ffc26d",
+      "WygrywTlo": "#ffe2bce6",
+      "WygrywObr": "#eccf9d"
+    }
+  ],
+  "Jesien": [
+    {
+      "Tlo": "#ffccc5",
+      "Obramowanie": "#9a1700",
+      "ResetTlo": "#ff9780",
+      "ResetObr": "#ff806d",
+      "WygrywTlo": "#ffcabce6",
+      "WygrywObr": "#eca79d"
+    }
+  ]
+}
